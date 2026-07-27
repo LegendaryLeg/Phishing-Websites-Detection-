@@ -108,10 +108,66 @@ function featuresToVector(featureObj) {{
  */
 {js_body}
 
+function clamp01(x) {{
+  return Math.max(0, Math.min(1, x));
+}}
+
 /**
- * Map m2cgen output to a class label using CLASS_ORDER.
- * Tree models typically return [P(class0), P(class1), ...] aligned with CLASS_ORDER.
+ * P(phishing) from m2cgen output. CLASS_ORDER is [0, 1] => index 0 is phishing.
  */
+function modelPhishingLikelihood(pred) {{
+  if (Array.isArray(pred)) {{
+    const phishIdx = CLASS_ORDER.indexOf(0);
+    const idx = phishIdx >= 0 ? phishIdx : 0;
+    const total = pred.reduce((a, b) => a + Math.max(0, Number(b) || 0), 0) || 1;
+    return clamp01((Number(pred[idx]) || 0) / total);
+  }}
+  // Scalar: treat as P(legitimate) if >=0.5 style score for class 1
+  return clamp01(1 - Number(pred));
+}}
+
+/**
+ * Lightweight modern-web prior. Used to soften overconfident tree leaves on SPAs.
+ */
+function heuristicPhishingLikelihood(f) {{
+  let score = 0.35;
+  if (f.IsHTTPS === 0) score += 0.25;
+  else score -= 0.12;
+  if (f.IsDomainIP === 1) score += 0.3;
+  if (f.HasObfuscation === 1) score += 0.15;
+  if ((f.DegitRatioInURL || 0) > 0.35) score += 0.08;
+  if (f.HasPasswordField === 1 && f.HasExternalFormSubmit === 1) score += 0.2;
+  if (f.HasDescription === 1) score -= 0.05;
+  if (f.HasFavicon === 1) score -= 0.05;
+  if (f.HasTitle === 1) score -= 0.03;
+  if (f.IsResponsive === 1) score -= 0.03;
+  if (f.HasCopyrightInfo === 1) score -= 0.04;
+  if (f.HasSocialNet === 1) score -= 0.04;
+  if ((f.NoOfImage || 0) >= 5) score -= 0.03;
+  return clamp01(score);
+}}
+
+function combinePhishingLikelihood(modelP, heurP, f) {{
+  let combined = 0.55 * modelP + 0.45 * heurP;
+  const modernLegitSignals =
+    (f.IsHTTPS === 1 ? 1 : 0) +
+    (f.HasFavicon === 1 ? 1 : 0) +
+    (f.HasTitle === 1 ? 1 : 0) +
+    (f.IsResponsive === 1 ? 1 : 0) +
+    (f.HasDescription === 1 ? 1 : 0);
+  // Dampen extreme model phishing scores on pages that look like modern apps.
+  if (modernLegitSignals >= 4 && modelP >= 0.8) {{
+    combined = Math.min(combined, 0.45 + 0.25 * heurP);
+  }}
+  return clamp01(combined);
+}}
+
+function riskLevelFromLikelihood(p) {{
+  if (p >= 0.7) return "High";
+  if (p >= 0.4) return "Medium";
+  return "Low";
+}}
+
 function scoreToLabel(pred) {{
   if (Array.isArray(pred)) {{
     let bestIdx = 0;
@@ -120,20 +176,30 @@ function scoreToLabel(pred) {{
     }}
     return CLASS_ORDER[bestIdx];
   }}
-  // Scalar fallback: treat as score for the positive class (last in CLASS_ORDER).
   const positive = CLASS_ORDER[CLASS_ORDER.length - 1];
   const negative = CLASS_ORDER[0];
   return Number(pred) >= 0.5 ? positive : negative;
 }}
 
+/**
+ * Primary API for the extension UI: returns phishing likelihood (0..1), not a hard verdict.
+ */
 function predictFromFeatures(featureObj) {{
   const vector = featuresToVector(featureObj);
   const pred = rawScore(vector);
-  const label = scoreToLabel(pred);
-  const labelName = Number(label) === 1 ? "Legitimate" : "Phishing";
+  const modelP = modelPhishingLikelihood(pred);
+  const heurP = heuristicPhishingLikelihood(featureObj || {{}});
+  const phishingLikelihood = combinePhishingLikelihood(modelP, heurP, featureObj || {{}});
+  const riskLevel = riskLevelFromLikelihood(phishingLikelihood);
+  const label = scoreToLabel(pred); // kept for debugging / optional use
   return {{
+    phishingLikelihood,
+    phishingPercent: Math.round(phishingLikelihood * 100),
+    riskLevel,
+    modelPhishingLikelihood: modelP,
+    heuristicPhishingLikelihood: heurP,
     label: Number(label),
-    labelName,
+    labelName: riskLevel === "High" ? "High phishing risk" : riskLevel === "Medium" ? "Medium phishing risk" : "Low phishing risk",
     raw: pred,
     features: featureObj,
     vector,
@@ -147,6 +213,8 @@ if (typeof window !== "undefined") {{
   window.scoreToLabel = scoreToLabel;
   window.predictFromFeatures = predictFromFeatures;
   window.featuresToVector = featuresToVector;
+  window.modelPhishingLikelihood = modelPhishingLikelihood;
+  window.heuristicPhishingLikelihood = heuristicPhishingLikelihood;
 }}
 
 if (typeof module !== "undefined" && module.exports) {{
@@ -157,6 +225,9 @@ if (typeof module !== "undefined" && module.exports) {{
     scoreToLabel,
     predictFromFeatures,
     featuresToVector,
+    modelPhishingLikelihood,
+    heuristicPhishingLikelihood,
+    riskLevelFromLikelihood,
   }};
 }}
 """

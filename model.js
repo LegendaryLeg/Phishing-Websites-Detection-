@@ -1,6 +1,6 @@
 // Exported model: DecisionTree
 // clf.classes_ = [0, 1]
-// Phishing recall=0.9990, phishing F1=0.9990, macro-F1=0.9992
+// Phishing recall=0.9947, phishing F1=0.9953, macro-F1=0.9959
 // Must match train_compare_models.py DEPLOYABLE_FEATURES and popup.js.
 const FEATURE_ORDER = [
   "URLLength",
@@ -75,35 +75,15 @@ function rawScore(input) {
                     if (input[35] <= 0.5) {
                         var0 = [1.0, 0.0];
                     } else {
-                        if (input[18] <= 103.0) {
+                        if (input[18] <= 88.5) {
                             var0 = [1.0, 0.0];
                         } else {
-                            if (input[40] <= 2.5) {
-                                var0 = [1.0, 0.0];
-                            } else {
-                                if (input[1] <= 11.5) {
-                                    var0 = [1.0, 0.0];
-                                } else {
-                                    var0 = [0.0, 1.0];
-                                }
-                            }
+                            var0 = [0.9833333333333333, 0.016666666666666666];
                         }
                     }
                 } else {
-                    if (input[15] <= 1.5) {
-                        if (input[18] <= 101.5) {
-                            var0 = [1.0, 0.0];
-                        } else {
-                            if (input[17] <= 0.5) {
-                                var0 = [1.0, 0.0];
-                            } else {
-                                if (input[0] <= 29.5) {
-                                    var0 = [0.0, 1.0];
-                                } else {
-                                    var0 = [1.0, 0.0];
-                                }
-                            }
-                        }
+                    if (input[16] <= 0.05049999989569187) {
+                        var0 = [0.9259259259259259, 0.07407407407407407];
                     } else {
                         var0 = [1.0, 0.0];
                     }
@@ -112,222 +92,78 @@ function rawScore(input) {
                 if (input[15] <= 2.5) {
                     if (input[23] <= 0.5) {
                         if (input[18] <= 258.5) {
-                            if (input[27] <= 0.5) {
-                                if (input[9] <= 0.5194999873638153) {
-                                    if (input[17] <= 0.5) {
-                                        var0 = [1.0, 0.0];
-                                    } else {
-                                        if (input[16] <= 0.05350000038743019) {
-                                            if (input[40] <= 0.5) {
-                                                if (input[37] <= 2.5) {
-                                                    var0 = [1.0, 0.0];
-                                                } else {
-                                                    var0 = [0.0, 1.0];
-                                                }
-                                            } else {
-                                                if (input[37] <= 0.5) {
-                                                    var0 = [0.5, 0.5];
-                                                } else {
-                                                    var0 = [0.0, 1.0];
-                                                }
-                                            }
-                                        } else {
-                                            if (input[36] <= 0.5) {
-                                                var0 = [1.0, 0.0];
-                                            } else {
-                                                if (input[4] <= 0.5) {
-                                                    var0 = [1.0, 0.0];
-                                                } else {
-                                                    var0 = [0.3157894736842105, 0.6842105263157895];
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    if (input[35] <= 8.5) {
-                                        if (input[37] <= 2.5) {
-                                            var0 = [1.0, 0.0];
-                                        } else {
-                                            if (input[9] <= 0.5819999873638153) {
-                                                if (input[1] <= 23.5) {
-                                                    var0 = [0.9444444444444444, 0.05555555555555555];
-                                                } else {
-                                                    var0 = [0.0, 1.0];
-                                                }
-                                            } else {
-                                                var0 = [1.0, 0.0];
-                                            }
-                                        }
-                                    } else {
-                                        if (input[9] <= 0.5819999873638153) {
-                                            var0 = [0.0, 1.0];
-                                        } else {
-                                            if (input[39] <= 0.5) {
-                                                var0 = [1.0, 0.0];
-                                            } else {
-                                                if (input[34] <= 0.5) {
-                                                    var0 = [1.0, 0.0];
-                                                } else {
-                                                    var0 = [0.0, 1.0];
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            } else {
+                            if (input[9] <= 0.5194999873638153) {
                                 if (input[17] <= 0.5) {
                                     var0 = [1.0, 0.0];
                                 } else {
-                                    if (input[11] <= 0.012000000104308128) {
-                                        var0 = [0.0, 1.0];
+                                    var0 = [0.4444444444444444, 0.5555555555555556];
+                                }
+                            } else {
+                                if (input[16] <= 0.03749999962747097) {
+                                    var0 = [0.8940397350993378, 0.10596026490066225];
+                                } else {
+                                    if (input[18] <= 197.5) {
+                                        var0 = [1.0, 0.0];
                                     } else {
-                                        if (input[9] <= 0.4519999921321869) {
-                                            var0 = [0.0, 1.0];
-                                        } else {
-                                            var0 = [1.0, 0.0];
-                                        }
+                                        var0 = [0.9919354838709677, 0.008064516129032258];
                                     }
                                 }
                             }
                         } else {
-                            if (input[11] <= 0.009499999694526196) {
-                                if (input[4] <= 0.5) {
-                                    var0 = [1.0, 0.0];
+                            if (input[9] <= 0.5689999759197235) {
+                                if (input[35] <= 8.5) {
+                                    var0 = [0.1597222222222222, 0.8402777777777778];
                                 } else {
-                                    if (input[17] <= 0.5) {
-                                        var0 = [1.0, 0.0];
-                                    } else {
-                                        if (input[19] <= 64031.0) {
-                                            if (input[9] <= 0.6759999990463257) {
-                                                var0 = [0.0, 1.0];
-                                            } else {
-                                                if (input[37] <= 1.0) {
-                                                    var0 = [1.0, 0.0];
-                                                } else {
-                                                    var0 = [0.0, 1.0];
-                                                }
-                                            }
-                                        } else {
-                                            if (input[18] <= 6002.0) {
-                                                var0 = [1.0, 0.0];
-                                            } else {
-                                                var0 = [0.0, 1.0];
-                                            }
-                                        }
-                                    }
+                                    var0 = [0.006756756756756757, 0.9932432432432432];
                                 }
                             } else {
-                                if (input[18] <= 812.0) {
-                                    var0 = [1.0, 0.0];
-                                } else {
-                                    if (input[28] <= 0.5) {
-                                        var0 = [0.0, 1.0];
-                                    } else {
-                                        var0 = [1.0, 0.0];
-                                    }
-                                }
+                                var0 = [0.6363636363636364, 0.36363636363636365];
                             }
                         }
                     } else {
-                        if (input[17] <= 0.5) {
-                            var0 = [1.0, 0.0];
-                        } else {
-                            if (input[4] <= 0.5) {
-                                var0 = [1.0, 0.0];
-                            } else {
-                                if (input[9] <= 0.6755000054836273) {
-                                    if (input[35] <= 1.5) {
-                                        if (input[19] <= 3466.0) {
-                                            if (input[11] <= 0.1784999966621399) {
-                                                if (input[16] <= 0.02949999924749136) {
-                                                    var0 = [0.16666666666666666, 0.8333333333333334];
-                                                } else {
-                                                    var0 = [0.0, 1.0];
-                                                }
-                                            } else {
-                                                var0 = [1.0, 0.0];
-                                            }
-                                        } else {
-                                            if (input[36] <= 0.5) {
-                                                var0 = [1.0, 0.0];
-                                            } else {
-                                                var0 = [0.0, 1.0];
-                                            }
-                                        }
-                                    } else {
-                                        var0 = [0.0, 1.0];
-                                    }
+                        if (input[35] <= 3.5) {
+                            if (input[9] <= 0.5194999873638153) {
+                                if (input[18] <= 243.0) {
+                                    var0 = [0.16901408450704225, 0.8309859154929577];
                                 } else {
-                                    if (input[18] <= 260.0) {
-                                        var0 = [1.0, 0.0];
-                                    } else {
-                                        var0 = [0.0, 1.0];
-                                    }
+                                    var0 = [0.040983606557377046, 0.9590163934426229];
+                                }
+                            } else {
+                                var0 = [0.5529411764705883, 0.4470588235294118];
+                            }
+                        } else {
+                            if (input[35] <= 9.5) {
+                                if (input[19] <= 336.5) {
+                                    var0 = [0.15702479338842976, 0.8429752066115702];
+                                } else {
+                                    var0 = [0.017167381974248927, 0.9828326180257511];
+                                }
+                            } else {
+                                if (input[18] <= 243.0) {
+                                    var0 = [0.008333333333333333, 0.9916666666666667];
+                                } else {
+                                    var0 = [0.0, 1.0];
                                 }
                             }
                         }
                     }
                 } else {
                     if (input[0] <= 32.5) {
-                        if (input[23] <= 0.5) {
-                            if (input[18] <= 229.0) {
+                        if (input[18] <= 229.0) {
+                            if (input[35] <= 2.5) {
                                 var0 = [1.0, 0.0];
                             } else {
-                                if (input[4] <= 2.5) {
-                                    if (input[27] <= 0.5) {
-                                        if (input[37] <= 14.5) {
-                                            var0 = [1.0, 0.0];
-                                        } else {
-                                            var0 = [0.0, 1.0];
-                                        }
-                                    } else {
-                                        if (input[15] <= 3.5) {
-                                            var0 = [0.0, 1.0];
-                                        } else {
-                                            var0 = [1.0, 0.0];
-                                        }
-                                    }
-                                } else {
-                                    var0 = [0.0, 1.0];
-                                }
+                                var0 = [0.9712230215827338, 0.02877697841726619];
                             }
                         } else {
-                            if (input[9] <= 0.48350000381469727) {
-                                var0 = [0.0, 1.0];
-                            } else {
-                                if (input[18] <= 247.5) {
-                                    var0 = [1.0, 0.0];
-                                } else {
-                                    if (input[3] <= 2.5) {
-                                        var0 = [0.0, 1.0];
-                                    } else {
-                                        var0 = [1.0, 0.0];
-                                    }
-                                }
-                            }
+                            var0 = [0.845679012345679, 0.15432098765432098];
                         }
                     } else {
                         if (input[18] <= 321.5) {
                             var0 = [1.0, 0.0];
                         } else {
-                            if (input[0] <= 41.5) {
-                                if (input[35] <= 5.5) {
-                                    if (input[18] <= 326.0) {
-                                        var0 = [0.0, 1.0];
-                                    } else {
-                                        var0 = [1.0, 0.0];
-                                    }
-                                } else {
-                                    if (input[18] <= 507.0) {
-                                        if (input[38] <= 1.0) {
-                                            var0 = [1.0, 0.0];
-                                        } else {
-                                            var0 = [0.0, 1.0];
-                                        }
-                                    } else {
-                                        var0 = [0.0, 1.0];
-                                    }
-                                }
+                            if (input[0] <= 43.5) {
+                                var0 = [0.9375, 0.0625];
                             } else {
                                 var0 = [1.0, 0.0];
                             }
@@ -339,33 +175,25 @@ function rawScore(input) {
             if (input[4] <= 0.5) {
                 var0 = [1.0, 0.0];
             } else {
-                if (input[17] <= 0.5) {
-                    var0 = [1.0, 0.0];
+                if (input[18] <= 128.5) {
+                    var0 = [0.59375, 0.40625];
                 } else {
-                    if (input[15] <= 2.5) {
-                        if (input[18] <= 90.0) {
-                            var0 = [1.0, 0.0];
+                    if (input[11] <= 0.012000000104308128) {
+                        if (input[38] <= 9.5) {
+                            if (input[1] <= 18.5) {
+                                var0 = [0.0, 1.0];
+                            } else {
+                                var0 = [0.07746478873239436, 0.9225352112676056];
+                            }
                         } else {
-                            var0 = [0.0, 1.0];
+                            if (input[19] <= 10196.0) {
+                                var0 = [0.0, 1.0];
+                            } else {
+                                var0 = [0.016666666666666666, 0.9833333333333333];
+                            }
                         }
                     } else {
-                        if (input[10] <= 0.5) {
-                            if (input[9] <= 0.6175000071525574) {
-                                var0 = [0.0, 1.0];
-                            } else {
-                                if (input[1] <= 33.0) {
-                                    var0 = [1.0, 0.0];
-                                } else {
-                                    var0 = [0.0, 1.0];
-                                }
-                            }
-                        } else {
-                            if (input[38] <= 20.5) {
-                                var0 = [1.0, 0.0];
-                            } else {
-                                var0 = [0.0, 1.0];
-                            }
-                        }
+                        var0 = [0.2786885245901639, 0.7213114754098361];
                     }
                 }
             }
@@ -377,180 +205,80 @@ function rawScore(input) {
             } else {
                 if (input[18] <= 156.5) {
                     if (input[15] <= 1.5) {
-                        if (input[4] <= 0.5) {
-                            var0 = [1.0, 0.0];
+                        if (input[18] <= 119.5) {
+                            var0 = [0.06349206349206349, 0.9365079365079365];
                         } else {
-                            var0 = [0.0, 1.0];
-                        }
-                    } else {
-                        if (input[38] <= 8.5) {
-                            if (input[34] <= 0.5) {
-                                if (input[27] <= 0.5) {
-                                    if (input[4] <= 1.5) {
-                                        if (input[9] <= 0.5054999887943268) {
-                                            if (input[10] <= 0.5) {
-                                                if (input[16] <= 0.08700000122189522) {
-                                                    var0 = [0.0, 1.0];
-                                                } else {
-                                                    var0 = [1.0, 0.0];
-                                                }
-                                            } else {
-                                                var0 = [1.0, 0.0];
-                                            }
-                                        } else {
-                                            var0 = [1.0, 0.0];
-                                        }
-                                    } else {
-                                        if (input[11] <= 0.03350000083446503) {
-                                            var0 = [0.0, 1.0];
-                                        } else {
-                                            var0 = [1.0, 0.0];
-                                        }
-                                    }
-                                } else {
-                                    if (input[18] <= 143.5) {
-                                        if (input[16] <= 0.07999999821186066) {
-                                            var0 = [1.0, 0.0];
-                                        } else {
-                                            var0 = [0.0, 1.0];
-                                        }
-                                    } else {
-                                        var0 = [0.0, 1.0];
-                                    }
-                                }
-                            } else {
-                                if (input[9] <= 0.5195000171661377) {
-                                    if (input[16] <= 0.09750000014901161) {
-                                        var0 = [0.0, 1.0];
-                                    } else {
-                                        if (input[35] <= 5.5) {
-                                            var0 = [1.0, 0.0];
-                                        } else {
-                                            var0 = [0.0, 1.0];
-                                        }
-                                    }
-                                } else {
-                                    if (input[40] <= 8.5) {
-                                        var0 = [1.0, 0.0];
-                                    } else {
-                                        if (input[18] <= 111.0) {
-                                            var0 = [1.0, 0.0];
-                                        } else {
-                                            if (input[36] <= 3.5) {
-                                                var0 = [0.0, 1.0];
-                                            } else {
-                                                var0 = [1.0, 0.0];
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            if (input[19] <= 6417.5) {
+                            if (input[9] <= 0.48999999463558197) {
                                 var0 = [0.0, 1.0];
                             } else {
-                                var0 = [1.0, 0.0];
+                                var0 = [0.012738853503184714, 0.9872611464968153];
                             }
+                        }
+                    } else {
+                        if (input[9] <= 0.5764999985694885) {
+                            var0 = [0.4943181818181818, 0.5056818181818182];
+                        } else {
+                            var0 = [0.9868421052631579, 0.013157894736842105];
                         }
                     }
                 } else {
-                    if (input[4] <= 0.5) {
-                        var0 = [1.0, 0.0];
-                    } else {
-                        if (input[35] <= 5.5) {
-                            if (input[10] <= 1.5) {
-                                if (input[9] <= 0.6935000121593475) {
-                                    if (input[15] <= 2.5) {
-                                        if (input[18] <= 178.5) {
-                                            if (input[9] <= 0.5559999942779541) {
-                                                var0 = [0.0, 1.0];
-                                            } else {
-                                                if (input[1] <= 20.5) {
-                                                    var0 = [1.0, 0.0];
-                                                } else {
-                                                    var0 = [0.0, 1.0];
-                                                }
-                                            }
-                                        } else {
-                                            if (input[37] <= 0.5) {
-                                                if (input[19] <= 8994.5) {
-                                                    var0 = [0.0, 1.0];
-                                                } else {
-                                                    var0 = [1.0, 0.0];
-                                                }
-                                            } else {
-                                                var0 = [0.0, 1.0];
-                                            }
-                                        }
-                                    } else {
-                                        if (input[3] <= 3.5) {
-                                            if (input[19] <= 40039.0) {
-                                                var0 = [0.0, 1.0];
-                                            } else {
-                                                var0 = [1.0, 0.0];
-                                            }
-                                        } else {
-                                            var0 = [1.0, 0.0];
-                                        }
-                                    }
-                                } else {
-                                    if (input[16] <= 0.036999999545514584) {
-                                        if (input[18] <= 290.0) {
-                                            var0 = [1.0, 0.0];
-                                        } else {
-                                            var0 = [0.0, 1.0];
-                                        }
-                                    } else {
-                                        var0 = [1.0, 0.0];
-                                    }
-                                }
-                            } else {
-                                if (input[15] <= 1.5) {
-                                    var0 = [0.0, 1.0];
-                                } else {
-                                    if (input[8] <= 12.5) {
-                                        if (input[16] <= 0.05650000087916851) {
-                                            var0 = [1.0, 0.0];
-                                        } else {
-                                            var0 = [0.0, 1.0];
-                                        }
-                                    } else {
-                                        if (input[40] <= 50.5) {
-                                            var0 = [1.0, 0.0];
-                                        } else {
-                                            var0 = [0.0, 1.0];
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            if (input[19] <= 94885.0) {
-                                if (input[18] <= 335.5) {
-                                    if (input[19] <= 16626.0) {
-                                        if (input[9] <= 0.6855000257492065) {
-                                            var0 = [0.0, 1.0];
-                                        } else {
-                                            if (input[36] <= 0.5) {
-                                                var0 = [1.0, 0.0];
-                                            } else {
-                                                var0 = [0.0, 1.0];
-                                            }
-                                        }
-                                    } else {
-                                        var0 = [1.0, 0.0];
-                                    }
-                                } else {
-                                    var0 = [0.0, 1.0];
-                                }
-                            } else {
-                                if (input[18] <= 2329.5) {
-                                    var0 = [1.0, 0.0];
-                                } else {
-                                    if (input[19] <= 923337.0) {
+                    if (input[35] <= 5.5) {
+                        if (input[9] <= 0.62950000166893) {
+                            if (input[11] <= 0.06149999983608723) {
+                                if (input[16] <= 0.07600000128149986) {
+                                    if (input[9] <= 0.5689999759197235) {
                                         var0 = [0.0, 1.0];
                                     } else {
-                                        var0 = [1.0, 0.0];
+                                        if (input[19] <= 8966.5) {
+                                            var0 = [0.0, 1.0];
+                                        } else {
+                                            var0 = [0.014814814814814815, 0.9851851851851852];
+                                        }
                                     }
+                                } else {
+                                    if (input[9] <= 0.507999986410141) {
+                                        var0 = [0.0, 1.0];
+                                    } else {
+                                        var0 = [0.16666666666666666, 0.8333333333333334];
+                                    }
+                                }
+                            } else {
+                                var0 = [0.2746478873239437, 0.7253521126760564];
+                            }
+                        } else {
+                            if (input[15] <= 1.5) {
+                                var0 = [0.005847953216374269, 0.9941520467836257];
+                            } else {
+                                var0 = [0.725, 0.275];
+                            }
+                        }
+                    } else {
+                        if (input[19] <= 27679.5) {
+                            if (input[9] <= 0.6855000257492065) {
+                                if (input[18] <= 443.5) {
+                                    if (input[11] <= 0.08650000020861626) {
+                                        if (input[19] <= 8039.0) {
+                                            var0 = [0.0, 1.0];
+                                        } else {
+                                            var0 = [0.001841620626151013, 0.998158379373849];
+                                        }
+                                    } else {
+                                        var0 = [0.01652892561983471, 0.9834710743801653];
+                                    }
+                                } else {
+                                    var0 = [0.0, 1.0];
+                                }
+                            } else {
+                                var0 = [0.027649769585253458, 0.9723502304147466];
+                            }
+                        } else {
+                            if (input[18] <= 1289.5) {
+                                var0 = [0.19166666666666668, 0.8083333333333333];
+                            } else {
+                                if (input[19] <= 134935.5) {
+                                    var0 = [0.0, 1.0];
+                                } else {
+                                    var0 = [0.01652892561983471, 0.9834710743801653];
                                 }
                             }
                         }
@@ -559,63 +287,83 @@ function rawScore(input) {
             }
         } else {
             if (input[38] <= 29.5) {
-                if (input[11] <= 0.004000000189989805) {
-                    if (input[9] <= 0.6110000014305115) {
-                        if (input[18] <= 174.0) {
-                            if (input[8] <= 14.0) {
-                                var0 = [0.0, 1.0];
-                            } else {
-                                var0 = [1.0, 0.0];
-                            }
-                        } else {
-                            if (input[19] <= 33735.0) {
-                                var0 = [0.0, 1.0];
-                            } else {
-                                var0 = [1.0, 0.0];
-                            }
-                        }
+                if (input[10] <= 0.5) {
+                    if (input[9] <= 0.6620000004768372) {
+                        var0 = [0.5555555555555556, 0.4444444444444444];
                     } else {
-                        if (input[1] <= 35.5) {
-                            var0 = [1.0, 0.0];
-                        } else {
-                            if (input[8] <= 31.5) {
-                                if (input[36] <= 2.0) {
-                                    var0 = [1.0, 0.0];
-                                } else {
-                                    var0 = [0.0, 1.0];
-                                }
-                            } else {
-                                var0 = [1.0, 0.0];
-                            }
-                        }
+                        var0 = [1.0, 0.0];
                     }
                 } else {
                     var0 = [1.0, 0.0];
                 }
             } else {
-                if (input[0] <= 56.5) {
-                    if (input[19] <= 27017.0) {
-                        var0 = [0.0, 1.0];
-                    } else {
-                        if (input[35] <= 862.5) {
-                            var0 = [1.0, 0.0];
-                        } else {
-                            var0 = [0.0, 1.0];
-                        }
-                    }
-                } else {
-                    var0 = [1.0, 0.0];
-                }
+                var0 = [0.11814345991561181, 0.8818565400843882];
             }
         }
     }
     return var0;
 }
 
+function clamp01(x) {
+  return Math.max(0, Math.min(1, x));
+}
+
 /**
- * Map m2cgen output to a class label using CLASS_ORDER.
- * Tree models typically return [P(class0), P(class1), ...] aligned with CLASS_ORDER.
+ * P(phishing) from m2cgen output. CLASS_ORDER is [0, 1] => index 0 is phishing.
  */
+function modelPhishingLikelihood(pred) {
+  if (Array.isArray(pred)) {
+    const phishIdx = CLASS_ORDER.indexOf(0);
+    const idx = phishIdx >= 0 ? phishIdx : 0;
+    const total = pred.reduce((a, b) => a + Math.max(0, Number(b) || 0), 0) || 1;
+    return clamp01((Number(pred[idx]) || 0) / total);
+  }
+  // Scalar: treat as P(legitimate) if >=0.5 style score for class 1
+  return clamp01(1 - Number(pred));
+}
+
+/**
+ * Lightweight modern-web prior. Used to soften overconfident tree leaves on SPAs.
+ */
+function heuristicPhishingLikelihood(f) {
+  let score = 0.35;
+  if (f.IsHTTPS === 0) score += 0.25;
+  else score -= 0.12;
+  if (f.IsDomainIP === 1) score += 0.3;
+  if (f.HasObfuscation === 1) score += 0.15;
+  if ((f.DegitRatioInURL || 0) > 0.35) score += 0.08;
+  if (f.HasPasswordField === 1 && f.HasExternalFormSubmit === 1) score += 0.2;
+  if (f.HasDescription === 1) score -= 0.05;
+  if (f.HasFavicon === 1) score -= 0.05;
+  if (f.HasTitle === 1) score -= 0.03;
+  if (f.IsResponsive === 1) score -= 0.03;
+  if (f.HasCopyrightInfo === 1) score -= 0.04;
+  if (f.HasSocialNet === 1) score -= 0.04;
+  if ((f.NoOfImage || 0) >= 5) score -= 0.03;
+  return clamp01(score);
+}
+
+function combinePhishingLikelihood(modelP, heurP, f) {
+  let combined = 0.55 * modelP + 0.45 * heurP;
+  const modernLegitSignals =
+    (f.IsHTTPS === 1 ? 1 : 0) +
+    (f.HasFavicon === 1 ? 1 : 0) +
+    (f.HasTitle === 1 ? 1 : 0) +
+    (f.IsResponsive === 1 ? 1 : 0) +
+    (f.HasDescription === 1 ? 1 : 0);
+  // Dampen extreme model phishing scores on pages that look like modern apps.
+  if (modernLegitSignals >= 4 && modelP >= 0.8) {
+    combined = Math.min(combined, 0.45 + 0.25 * heurP);
+  }
+  return clamp01(combined);
+}
+
+function riskLevelFromLikelihood(p) {
+  if (p >= 0.7) return "High";
+  if (p >= 0.4) return "Medium";
+  return "Low";
+}
+
 function scoreToLabel(pred) {
   if (Array.isArray(pred)) {
     let bestIdx = 0;
@@ -624,20 +372,30 @@ function scoreToLabel(pred) {
     }
     return CLASS_ORDER[bestIdx];
   }
-  // Scalar fallback: treat as score for the positive class (last in CLASS_ORDER).
   const positive = CLASS_ORDER[CLASS_ORDER.length - 1];
   const negative = CLASS_ORDER[0];
   return Number(pred) >= 0.5 ? positive : negative;
 }
 
+/**
+ * Primary API for the extension UI: returns phishing likelihood (0..1), not a hard verdict.
+ */
 function predictFromFeatures(featureObj) {
   const vector = featuresToVector(featureObj);
   const pred = rawScore(vector);
-  const label = scoreToLabel(pred);
-  const labelName = Number(label) === 1 ? "Legitimate" : "Phishing";
+  const modelP = modelPhishingLikelihood(pred);
+  const heurP = heuristicPhishingLikelihood(featureObj || {});
+  const phishingLikelihood = combinePhishingLikelihood(modelP, heurP, featureObj || {});
+  const riskLevel = riskLevelFromLikelihood(phishingLikelihood);
+  const label = scoreToLabel(pred); // kept for debugging / optional use
   return {
+    phishingLikelihood,
+    phishingPercent: Math.round(phishingLikelihood * 100),
+    riskLevel,
+    modelPhishingLikelihood: modelP,
+    heuristicPhishingLikelihood: heurP,
     label: Number(label),
-    labelName,
+    labelName: riskLevel === "High" ? "High phishing risk" : riskLevel === "Medium" ? "Medium phishing risk" : "Low phishing risk",
     raw: pred,
     features: featureObj,
     vector,
@@ -651,6 +409,8 @@ if (typeof window !== "undefined") {
   window.scoreToLabel = scoreToLabel;
   window.predictFromFeatures = predictFromFeatures;
   window.featuresToVector = featuresToVector;
+  window.modelPhishingLikelihood = modelPhishingLikelihood;
+  window.heuristicPhishingLikelihood = heuristicPhishingLikelihood;
 }
 
 if (typeof module !== "undefined" && module.exports) {
@@ -661,5 +421,8 @@ if (typeof module !== "undefined" && module.exports) {
     scoreToLabel,
     predictFromFeatures,
     featuresToVector,
+    modelPhishingLikelihood,
+    heuristicPhishingLikelihood,
+    riskLevelFromLikelihood,
   };
 }
