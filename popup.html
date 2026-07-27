@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Phishing Detector</title>
+    <style>
+      :root {
+        --bg: #0f1419;
+        --panel: #1a2332;
+        --text: #e7ecf3;
+        --muted: #9aa8bc;
+        --legit: #1f8f5f;
+        --phish: #c43c3c;
+        --pending: #b08900;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: radial-gradient(120% 120% at 10% 0%, #1c2a40 0%, var(--bg) 55%);
+        color: var(--text);
+        width: 360px;
+        min-height: 280px;
+      }
+      main {
+        padding: 16px;
+      }
+      h1 {
+        font-size: 16px;
+        margin: 0 0 8px;
+        letter-spacing: 0.02em;
+      }
+      #url {
+        font-size: 11px;
+        color: var(--muted);
+        word-break: break-all;
+        margin-bottom: 12px;
+      }
+      #status {
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--panel);
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      #status.legit {
+        background: color-mix(in srgb, var(--legit) 35%, var(--panel));
+      }
+      #status.phish {
+        background: color-mix(in srgb, var(--phish) 40%, var(--panel));
+      }
+      #status.pending,
+      #status.error {
+        background: color-mix(in srgb, var(--pending) 30%, var(--panel));
+      }
+      button {
+        border: 0;
+        background: #2f6fed;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:hover {
+        filter: brightness(1.08);
+      }
+      details {
+        margin-top: 12px;
+      }
+      summary {
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      pre {
+        max-height: 180px;
+        overflow: auto;
+        background: var(--panel);
+        padding: 8px;
+        border-radius: 6px;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Phishing Detector</h1>
+      <div id="url">—</div>
+      <div id="status" class="pending">Ready</div>
+      <div>
+        <button id="analyze" type="button">Analyze tab</button>
+      </div>
+      <details>
+        <summary>Extracted features</summary>
+        <pre id="features">{}</pre>
+      </details>
+    </main>
+    <script src="model.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

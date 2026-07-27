@@ -41,3 +41,23 @@ In order to test the model, choose any URL and insert it into the Python file. L
 Collaborators:
 Raiyan Mokhammad - raiyan.mokhd@gmail.com
 Rakhat Bektas - rakhatbektas@gmail.com
+
+# Model Comparison Results
+
+Holdout metrics on the **deployable** feature set (features a Chrome extension can extract from URL + DOM). Label **0 = Phishing**, **1 = Legitimate**. Phishing-class scores below are computed from the confusion matrices produced by `train_compare_models.py`.
+
+| Model | Phishing precision | Phishing recall | Phishing F1 |
+| --- | ---: | ---: | ---: |
+| Decision Tree | 0.999059 | 0.999009 | 0.999034 |
+| Logistic Regression | 0.999306 | 0.998762 | 0.999034 |
+| Random Forest (n=200) | 1.000000 | 0.999752 | 0.999876 |
+| XGBoost (n=200) | 0.999950 | 0.999901 | 0.999926 |
+
+**Chosen model: Decision Tree** (`best_phishing_model.pkl` → `model.js` via m2cgen).
+
+**Why:** Selection priority was (1) phishing recall, (2) phishing F1, (3) deployable JS size. XGBoost led Decision Tree by only ~0.09 points of phishing recall/F1 (well under the ~1–2 point ensemble threshold), so the single tree was preferred for a much smaller client-side bundle (~30 KB vs a large ensemble export). No `n_estimators` sweep was needed because an ensemble was not selected.
+
+**Final deployable feature list (41 features):**  
+`URLLength`, `DomainLength`, `IsDomainIP`, `TLDLength`, `NoOfSubDomain`, `HasObfuscation`, `NoOfObfuscatedChar`, `ObfuscationRatio`, `NoOfLettersInURL`, `LetterRatioInURL`, `NoOfDegitsInURL`, `DegitRatioInURL`, `NoOfEqualsInURL`, `NoOfQMarkInURL`, `NoOfAmpersandInURL`, `NoOfOtherSpecialCharsInURL`, `SpacialCharRatioInURL`, `IsHTTPS`, `LineOfCode`, `LargestLineLength`, `HasTitle`, `HasFavicon`, `IsResponsive`, `HasDescription`, `NoOfPopup`, `NoOfiFrame`, `HasExternalFormSubmit`, `HasSocialNet`, `HasSubmitButton`, `HasHiddenFields`, `HasPasswordField`, `Bank`, `Pay`, `Crypto`, `HasCopyrightInfo`, `NoOfImage`, `NoOfCSS`, `NoOfJS`, `NoOfSelfRef`, `NoOfEmptyRef`, `NoOfExternalRef`
+
+These names/order match `FEATURE_ORDER` in `model.js` and the object returned by `extractFeaturesFromPage()` in `popup.js`. Exported `CLASS_ORDER` is `[0, 1]` (matches `clf.classes_`).
