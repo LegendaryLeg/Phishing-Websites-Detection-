@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Phishing Detector</title>
+    <style>
+      :root {
+        --bg: #0f1419;
+        --panel: #1a2332;
+        --text: #e7ecf3;
+        --muted: #9aa8bc;
+        --low: #1f8f5f;
+        --medium: #b08900;
+        --high: #c43c3c;
+        --pending: #6b7c93;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: radial-gradient(120% 120% at 10% 0%, #1c2a40 0%, var(--bg) 55%);
+        color: var(--text);
+        width: 360px;
+        min-height: 280px;
+      }
+      main {
+        padding: 16px;
+      }
+      h1 {
+        font-size: 16px;
+        margin: 0 0 8px;
+        letter-spacing: 0.02em;
+      }
+      #url {
+        font-size: 11px;
+        color: var(--muted);
+        word-break: break-all;
+        margin-bottom: 12px;
+      }
+      #status {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 6px;
+        background: var(--panel);
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      #status.low {
+        background: color-mix(in srgb, var(--low) 35%, var(--panel));
+      }
+      #status.medium {
+        background: color-mix(in srgb, var(--medium) 35%, var(--panel));
+      }
+      #status.high {
+        background: color-mix(in srgb, var(--high) 40%, var(--panel));
+      }
+      #status.pending,
+      #status.error {
+        background: color-mix(in srgb, var(--pending) 30%, var(--panel));
+      }
+      #likelihood {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .bar {
+        height: 8px;
+        border-radius: 999px;
+        background: #2a3548;
+        overflow: hidden;
+        margin-top: 6px;
+      }
+      .bar > span {
+        display: block;
+        height: 100%;
+        width: 0%;
+        background: var(--medium);
+      }
+      .bar.low > span {
+        background: var(--low);
+      }
+      .bar.medium > span {
+        background: var(--medium);
+      }
+      .bar.high > span {
+        background: var(--high);
+      }
+      #reasons {
+        margin: 0 0 12px;
+        padding-left: 18px;
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      #reasons li {
+        margin-bottom: 4px;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      button {
+        border: 0;
+        background: #2f6fed;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button.secondary {
+        background: #3a465c;
+      }
+      button:hover {
+        filter: brightness(1.08);
+      }
+      button:disabled {
+        opacity: 0.55;
+        cursor: default;
+        filter: none;
+      }
+      #trustNote {
+        margin-top: 8px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      details {
+        margin-top: 12px;
+      }
+      summary {
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      pre {
+        max-height: 160px;
+        overflow: auto;
+        background: var(--panel);
+        padding: 8px;
+        border-radius: 6px;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Phishing Detector</h1>
+      <div id="url">—</div>
+      <div id="status" class="pending">Ready</div>
+      <div id="likelihood">
+        <span id="likelihoodText">Phishing likelihood: —</span>
+        <div class="bar" id="bar"><span id="barFill"></span></div>
+      </div>
+      <ul id="reasons"></ul>
+      <div class="actions">
+        <button id="analyze" type="button">Rescan</button>
+        <button id="trustBtn" class="secondary" type="button">Trust this site</button>
+      </div>
+      <div id="trustNote"></div>
+      <details>
+        <summary>Extracted features</summary>
+        <pre id="features">{}</pre>
+      </details>
+    </main>
+    <script src="model.js"></script>
+    <script src="allowlist.js"></script>
+    <script src="localRisk.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
